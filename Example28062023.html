@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function mergeSort(arr) {
+        if (arr.length === 1) {
+            return arr;
+        }
+        let mid = Math.floor(arr.length / 2);
+        let first = arr.slice(0, mid);
+        let second = arr.slice(mid);
+        return merge(mergeSort(first), mergeSort(second));
+    }
+
+    function merge(arr1, arr2) {
+        let arr = [];
+        let i = 0, j = 0;
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                arr.push(arr1[i++]);
+            } else {
+                arr.push(arr2[j++]);
+            }
+        }
+        while (i < arr1.length) {
+            arr.push(arr1[i++]);
+        }
+        while (j < arr2.length) {
+            arr.push(arr2[j++]);
+        }
+        return arr;
+    }
+
+    let array = [2, 1, 3];
+    console.log(mergeSort(array));
+</script>
+</body>
+</html>
