@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function quickSort(array, lower, upper) {
+        if (lower >= upper) {
+            return;
+        }
+        let middle = Math.floor((lower + upper) / 2);
+        let middleValue = array[middle];
+        let i = lower, j = upper;
+        while (i <= j) {
+            while (array[i] < middleValue) {
+                i++;
+            }
+            while (array[j] > middleValue) {
+                j--;
+            }
+            if (i <= j) {
+                let temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        if (lower < j) {
+            quickSort(array, lower, j);
+        }
+        if (i < upper) {
+            quickSort(array, i, upper);
+        }
+    }
+    let array = [7, -2, 4, 1, 6, 5, 0, 6, 2];
+    quickSort(array, 0, array.length - 1);
+    console.log(array);
+</script>
+</body>
+</html>
